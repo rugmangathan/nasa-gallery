@@ -42,6 +42,7 @@
 		6316E9BC28B2376C00354904 /* MockGalleryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9BB28B2376C00354904 /* MockGalleryService.swift */; };
 		6316E9BE28B24DBC00354904 /* GalleryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9BD28B24DBC00354904 /* GalleryService.swift */; };
 		6316E9C028B2510400354904 /* Gallery+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9BF28B2510400354904 /* Gallery+Tests.swift */; };
+		6316E9C828B26C2800354904 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6316E9C728B26C2800354904 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6316E9C828B26C2800354904 /* Kingfisher in Frameworks */,
 				6316E97F28B2037D00354904 /* MobiusExtras in Frameworks */,
 				6316E97D28B2037D00354904 /* MobiusCore in Frameworks */,
 			);
@@ -292,6 +294,7 @@
 			packageProductDependencies = (
 				6316E97C28B2037D00354904 /* MobiusCore */,
 				6316E97E28B2037D00354904 /* MobiusExtras */,
+				6316E9C728B26C2800354904 /* Kingfisher */,
 			);
 			productName = NasaGallery;
 			productReference = 6316E94128B1FE4100354904 /* NasaGallery.app */;
@@ -374,6 +377,7 @@
 			packageReferences = (
 				6316E97B28B2037D00354904 /* XCRemoteSwiftPackageReference "Mobius" */,
 				6316E9A428B2173C00354904 /* XCRemoteSwiftPackageReference "Cuckoo" */,
+				6316E9C628B26C2800354904 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 6316E94228B1FE4100354904 /* Products */;
 			projectDirPath = "";
@@ -840,6 +844,14 @@
 				version = 1.9.0;
 			};
 		};
+		6316E9C628B26C2800354904 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -867,6 +879,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6316E9A428B2173C00354904 /* XCRemoteSwiftPackageReference "Cuckoo" */;
 			productName = Cuckoo;
+		};
+		6316E9C728B26C2800354904 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6316E9C628B26C2800354904 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
