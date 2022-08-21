@@ -49,3 +49,6 @@ Dependencies/
 .accio/
 
 .DS_Store
+
+# Mock files
+NasaGallery/NasaGalleryTests/Mocks/GeneratedMocks.swift
