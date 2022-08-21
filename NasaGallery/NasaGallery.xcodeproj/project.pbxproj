@@ -37,6 +37,9 @@
 		6316E9B028B22EFF00354904 /* HomeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9AF28B22EFF00354904 /* HomeRenderer.swift */; };
 		6316E9B228B22FC800354904 /* SpyableHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9B128B22FC800354904 /* SpyableHomeView.swift */; };
 		6316E9B428B2309000354904 /* HomeRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9B328B2309000354904 /* HomeRendererTests.swift */; };
+		6316E9B828B2369E00354904 /* GalleryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9B728B2369E00354904 /* GalleryServiceTests.swift */; };
+		6316E9BA28B236EF00354904 /* GalleryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9B928B236EF00354904 /* GalleryApi.swift */; };
+		6316E9BC28B2376C00354904 /* MockGalleryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9BB28B2376C00354904 /* MockGalleryService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,9 @@
 		6316E9AF28B22EFF00354904 /* HomeRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRenderer.swift; sourceTree = "<group>"; };
 		6316E9B128B22FC800354904 /* SpyableHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyableHomeView.swift; sourceTree = "<group>"; };
 		6316E9B328B2309000354904 /* HomeRendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRendererTests.swift; sourceTree = "<group>"; };
+		6316E9B728B2369E00354904 /* GalleryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryServiceTests.swift; sourceTree = "<group>"; };
+		6316E9B928B236EF00354904 /* GalleryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryApi.swift; sourceTree = "<group>"; };
+		6316E9BB28B2376C00354904 /* MockGalleryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGalleryService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +151,7 @@
 				6316E99B28B211D900354904 /* Common */,
 				6316E97628B1FE9600354904 /* Home */,
 				6316E97528B1FE7600354904 /* Resources */,
+				6316E9B528B2367500354904 /* Service */,
 				6316E97728B1FEC000354904 /* Views */,
 			);
 			path = NasaGallery;
@@ -153,6 +160,7 @@
 		6316E95A28B1FE4400354904 /* NasaGalleryTests */ = {
 			isa = PBXGroup;
 			children = (
+				6316E9B628B2368900354904 /* Service */,
 				6316E99028B2074B00354904 /* Home */,
 				6316E98F28B205AC00354904 /* Mocks */,
 				6316E95B28B1FE4400354904 /* NasaGalleryTests.swift */,
@@ -239,6 +247,23 @@
 				6316E99C28B211E600354904 /* Gallery.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		6316E9B528B2367500354904 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6316E9B928B236EF00354904 /* GalleryApi.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		6316E9B628B2368900354904 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6316E9B728B2369E00354904 /* GalleryServiceTests.swift */,
+				6316E9BB28B2376C00354904 /* MockGalleryService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6316E9BA28B236EF00354904 /* GalleryApi.swift in Sources */,
 				6316E99D28B211E600354904 /* Gallery.swift in Sources */,
 				6316E99428B208AF00354904 /* HomeModel.swift in Sources */,
 				6316E99628B208ED00354904 /* HomeEvent.swift in Sources */,
@@ -446,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6316E9B828B2369E00354904 /* GalleryServiceTests.swift in Sources */,
 				6316E99228B2076D00354904 /* HomeLogicTests.swift in Sources */,
 				6316E9AB28B21C1500354904 /* SpyableHomeAction.swift in Sources */,
 				6316E9B228B22FC800354904 /* SpyableHomeView.swift in Sources */,
@@ -453,6 +480,7 @@
 				6316E99F28B2147200354904 /* HomeEffectHandlerTests.swift in Sources */,
 				6316E9B428B2309000354904 /* HomeRendererTests.swift in Sources */,
 				6316E9A928B2189100354904 /* GeneratedMocks.swift in Sources */,
+				6316E9BC28B2376C00354904 /* MockGalleryService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
