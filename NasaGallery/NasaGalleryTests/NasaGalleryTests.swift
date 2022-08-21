@@ -9,4 +9,8 @@ import XCTest
 @testable import NasaGallery
 
 class NasaGalleryTests: XCTestCase {
+
+  func test_canary() {
+    XCTAssertTrue(true)
+  }
 }
