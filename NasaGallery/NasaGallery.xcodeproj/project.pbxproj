@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6316E94528B1FE4100354904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E94428B1FE4100354904 /* AppDelegate.swift */; };
 		6316E94728B1FE4100354904 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E94628B1FE4100354904 /* SceneDelegate.swift */; };
-		6316E94928B1FE4100354904 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E94828B1FE4100354904 /* ViewController.swift */; };
+		6316E94928B1FE4100354904 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E94828B1FE4100354904 /* HomeViewController.swift */; };
 		6316E94C28B1FE4100354904 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6316E94A28B1FE4100354904 /* Main.storyboard */; };
 		6316E94E28B1FE4300354904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6316E94D28B1FE4300354904 /* Assets.xcassets */; };
 		6316E95128B1FE4300354904 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6316E94F28B1FE4300354904 /* LaunchScreen.storyboard */; };
@@ -65,7 +65,7 @@
 		6316E94128B1FE4100354904 /* NasaGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6316E94428B1FE4100354904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6316E94628B1FE4100354904 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6316E94828B1FE4100354904 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6316E94828B1FE4100354904 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6316E94B28B1FE4100354904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6316E94D28B1FE4300354904 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6316E95028B1FE4300354904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -209,9 +209,9 @@
 				6316E99528B208ED00354904 /* HomeEvent.swift */,
 				6316E99928B209F800354904 /* HomeLogic.swift */,
 				6316E99328B208AF00354904 /* HomeModel.swift */,
-				6316E9AD28B22EB800354904 /* HomeView.swift */,
 				6316E9AF28B22EFF00354904 /* HomeRenderer.swift */,
-				6316E94828B1FE4100354904 /* ViewController.swift */,
+				6316E9AD28B22EB800354904 /* HomeView.swift */,
+				6316E94828B1FE4100354904 /* HomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -462,7 +462,7 @@
 				6316E99D28B211E600354904 /* Gallery.swift in Sources */,
 				6316E99428B208AF00354904 /* HomeModel.swift in Sources */,
 				6316E99628B208ED00354904 /* HomeEvent.swift in Sources */,
-				6316E94928B1FE4100354904 /* ViewController.swift in Sources */,
+				6316E94928B1FE4100354904 /* HomeViewController.swift in Sources */,
 				6316E94528B1FE4100354904 /* AppDelegate.swift in Sources */,
 				6316E9AE28B22EB800354904 /* HomeView.swift in Sources */,
 				6316E9A328B215A500354904 /* HomeAction.swift in Sources */,
