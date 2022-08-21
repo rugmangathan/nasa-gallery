@@ -33,6 +33,10 @@
 		6316E9A928B2189100354904 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9A828B2189100354904 /* GeneratedMocks.swift */; };
 		6316E9AB28B21C1500354904 /* SpyableHomeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9AA28B21C1500354904 /* SpyableHomeAction.swift */; };
 		6316E9AC28B2239500354904 /* HomeEfffectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9A028B2155700354904 /* HomeEfffectHandler.swift */; };
+		6316E9AE28B22EB800354904 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9AD28B22EB800354904 /* HomeView.swift */; };
+		6316E9B028B22EFF00354904 /* HomeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9AF28B22EFF00354904 /* HomeRenderer.swift */; };
+		6316E9B228B22FC800354904 /* SpyableHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9B128B22FC800354904 /* SpyableHomeView.swift */; };
+		6316E9B428B2309000354904 /* HomeRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9B328B2309000354904 /* HomeRendererTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,10 @@
 		6316E9A228B215A500354904 /* HomeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAction.swift; sourceTree = "<group>"; };
 		6316E9A828B2189100354904 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		6316E9AA28B21C1500354904 /* SpyableHomeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyableHomeAction.swift; sourceTree = "<group>"; };
+		6316E9AD28B22EB800354904 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		6316E9AF28B22EFF00354904 /* HomeRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRenderer.swift; sourceTree = "<group>"; };
+		6316E9B128B22FC800354904 /* SpyableHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyableHomeView.swift; sourceTree = "<group>"; };
+		6316E9B328B2309000354904 /* HomeRendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRendererTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +197,8 @@
 				6316E99528B208ED00354904 /* HomeEvent.swift */,
 				6316E99928B209F800354904 /* HomeLogic.swift */,
 				6316E99328B208AF00354904 /* HomeModel.swift */,
+				6316E9AD28B22EB800354904 /* HomeView.swift */,
+				6316E9AF28B22EFF00354904 /* HomeRenderer.swift */,
 				6316E94828B1FE4100354904 /* ViewController.swift */,
 			);
 			path = Home;
@@ -217,6 +227,8 @@
 				6316E99E28B2147200354904 /* HomeEffectHandlerTests.swift */,
 				6316E99128B2076D00354904 /* HomeLogicTests.swift */,
 				6316E9AA28B21C1500354904 /* SpyableHomeAction.swift */,
+				6316E9B128B22FC800354904 /* SpyableHomeView.swift */,
+				6316E9B328B2309000354904 /* HomeRendererTests.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -406,7 +418,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $ACTION == \"indexbuild\" ]; then\n  echo \"Not running Cuckoo generator during indexing.\"\n  exit 0 \nfi\n\n# Skip for preview builds\nif [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  echo \"Not running Cuckoo generator during preview builds.\"\n  exit 0\nfi\n\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/Mocks/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PROJECT_DIR}/Cuckoo/run\" --download generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/Home/SpyableHomeAction.swift\" \n# \"${INPUT_DIR}/FileName3.swift\"\n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
+			shellScript = "if [ $ACTION == \"indexbuild\" ]; then\n  echo \"Not running Cuckoo generator during indexing.\"\n  exit 0 \nfi\n\n# Skip for preview builds\nif [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  echo \"Not running Cuckoo generator during preview builds.\"\n  exit 0\nfi\n\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/Mocks/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PROJECT_DIR}/Cuckoo/run\" --download generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/Home/SpyableHomeAction.swift\" \\\n\"${INPUT_DIR}/Home/SpyableHomeView.swift\"\n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -420,8 +432,10 @@
 				6316E99628B208ED00354904 /* HomeEvent.swift in Sources */,
 				6316E94928B1FE4100354904 /* ViewController.swift in Sources */,
 				6316E94528B1FE4100354904 /* AppDelegate.swift in Sources */,
+				6316E9AE28B22EB800354904 /* HomeView.swift in Sources */,
 				6316E9A328B215A500354904 /* HomeAction.swift in Sources */,
 				6316E99A28B209F800354904 /* HomeLogic.swift in Sources */,
+				6316E9B028B22EFF00354904 /* HomeRenderer.swift in Sources */,
 				6316E94728B1FE4100354904 /* SceneDelegate.swift in Sources */,
 				6316E99828B2095100354904 /* HomeEffect.swift in Sources */,
 				6316E9AC28B2239500354904 /* HomeEfffectHandler.swift in Sources */,
@@ -434,8 +448,10 @@
 			files = (
 				6316E99228B2076D00354904 /* HomeLogicTests.swift in Sources */,
 				6316E9AB28B21C1500354904 /* SpyableHomeAction.swift in Sources */,
+				6316E9B228B22FC800354904 /* SpyableHomeView.swift in Sources */,
 				6316E95C28B1FE4400354904 /* NasaGalleryTests.swift in Sources */,
 				6316E99F28B2147200354904 /* HomeEffectHandlerTests.swift in Sources */,
+				6316E9B428B2309000354904 /* HomeRendererTests.swift in Sources */,
 				6316E9A928B2189100354904 /* GeneratedMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
