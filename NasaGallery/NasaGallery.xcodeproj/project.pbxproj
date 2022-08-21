@@ -16,6 +16,7 @@
 		6316E95C28B1FE4400354904 /* NasaGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E95B28B1FE4400354904 /* NasaGalleryTests.swift */; };
 		6316E96628B1FE4400354904 /* NasaGalleryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E96528B1FE4400354904 /* NasaGalleryUITests.swift */; };
 		6316E96828B1FE4400354904 /* NasaGalleryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E96728B1FE4400354904 /* NasaGalleryUITestsLaunchTests.swift */; };
+		6316E97A28B2016400354904 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 6316E97928B2016400354904 /* data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		6316E96128B1FE4400354904 /* NasaGalleryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NasaGalleryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6316E96528B1FE4400354904 /* NasaGalleryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaGalleryUITests.swift; sourceTree = "<group>"; };
 		6316E96728B1FE4400354904 /* NasaGalleryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaGalleryUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6316E97928B2016400354904 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		6316E97528B1FE7600354904 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6316E97928B2016400354904 /* data.json */,
 				6316E95228B1FE4300354904 /* Info.plist */,
 				6316E94D28B1FE4300354904 /* Assets.xcassets */,
 			);
@@ -267,6 +270,7 @@
 				6316E95128B1FE4300354904 /* LaunchScreen.storyboard in Resources */,
 				6316E94E28B1FE4300354904 /* Assets.xcassets in Resources */,
 				6316E94C28B1FE4100354904 /* Main.storyboard in Resources */,
+				6316E97A28B2016400354904 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
