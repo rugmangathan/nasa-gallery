@@ -1,5 +1,5 @@
 //
-//  GalleryService.swift
+//  LocalGalleryService.swift
 //  NasaGallery
 //
 //  Created by Rugmangathan on 21/08/22.
@@ -9,7 +9,7 @@ import Foundation
 
 class LocalGalleryService {
   private let bundle: Bundle
-
+  static let shared = LocalGalleryService()
   init(bundle: Bundle = Bundle.main) {
     self.bundle = bundle
   }
