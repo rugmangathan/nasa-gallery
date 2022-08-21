@@ -99,10 +99,10 @@
 		6316E94328B1FE4100354904 /* NasaGallery */ = {
 			isa = PBXGroup;
 			children = (
-				6316E97728B1FEC000354904 /* Views */,
 				6316E97428B1FE4E00354904 /* App Start */,
 				6316E97628B1FE9600354904 /* Home */,
 				6316E97528B1FE7600354904 /* Resources */,
+				6316E97728B1FEC000354904 /* Views */,
 			);
 			path = NasaGallery;
 			sourceTree = "<group>";
@@ -167,6 +167,7 @@
 			buildConfigurationList = 6316E96B28B1FE4400354904 /* Build configuration list for PBXNativeTarget "NasaGallery" */;
 			buildPhases = (
 				6316E93D28B1FE4100354904 /* Sources */,
+				6316E97828B2000C00354904 /* Swiftlint */,
 				6316E93E28B1FE4100354904 /* Frameworks */,
 				6316E93F28B1FE4100354904 /* Resources */,
 			);
@@ -284,6 +285,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6316E97828B2000C00354904 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6316E93D28B1FE4100354904 /* Sources */ = {
