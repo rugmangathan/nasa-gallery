@@ -21,6 +21,12 @@
 		6316E97F28B2037D00354904 /* MobiusExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 6316E97E28B2037D00354904 /* MobiusExtras */; };
 		6316E98128B2037D00354904 /* MobiusNimble in Frameworks */ = {isa = PBXBuildFile; productRef = 6316E98028B2037D00354904 /* MobiusNimble */; };
 		6316E98328B2037D00354904 /* MobiusTest in Frameworks */ = {isa = PBXBuildFile; productRef = 6316E98228B2037D00354904 /* MobiusTest */; };
+		6316E99228B2076D00354904 /* HomeLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E99128B2076D00354904 /* HomeLogicTests.swift */; };
+		6316E99428B208AF00354904 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E99328B208AF00354904 /* HomeModel.swift */; };
+		6316E99628B208ED00354904 /* HomeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E99528B208ED00354904 /* HomeEvent.swift */; };
+		6316E99828B2095100354904 /* HomeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E99728B2095100354904 /* HomeEffect.swift */; };
+		6316E99A28B209F800354904 /* HomeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E99928B209F800354904 /* HomeLogic.swift */; };
+		6316E99D28B211E600354904 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E99C28B211E600354904 /* Gallery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,12 @@
 		6316E96528B1FE4400354904 /* NasaGalleryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaGalleryUITests.swift; sourceTree = "<group>"; };
 		6316E96728B1FE4400354904 /* NasaGalleryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaGalleryUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6316E97928B2016400354904 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		6316E99128B2076D00354904 /* HomeLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLogicTests.swift; sourceTree = "<group>"; };
+		6316E99328B208AF00354904 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		6316E99528B208ED00354904 /* HomeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEvent.swift; sourceTree = "<group>"; };
+		6316E99728B2095100354904 /* HomeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEffect.swift; sourceTree = "<group>"; };
+		6316E99928B209F800354904 /* HomeLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLogic.swift; sourceTree = "<group>"; };
+		6316E99C28B211E600354904 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,7 @@
 		6316E94328B1FE4100354904 /* NasaGallery */ = {
 			isa = PBXGroup;
 			children = (
+				6316E99B28B211D900354904 /* Common */,
 				6316E97428B1FE4E00354904 /* App Start */,
 				6316E97628B1FE9600354904 /* Home */,
 				6316E97528B1FE7600354904 /* Resources */,
@@ -120,6 +133,8 @@
 		6316E95A28B1FE4400354904 /* NasaGalleryTests */ = {
 			isa = PBXGroup;
 			children = (
+				6316E99028B2074B00354904 /* Home */,
+				6316E98F28B205AC00354904 /* Mocks */,
 				6316E95B28B1FE4400354904 /* NasaGalleryTests.swift */,
 			);
 			path = NasaGalleryTests;
@@ -156,6 +171,10 @@
 		6316E97628B1FE9600354904 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6316E99728B2095100354904 /* HomeEffect.swift */,
+				6316E99528B208ED00354904 /* HomeEvent.swift */,
+				6316E99928B209F800354904 /* HomeLogic.swift */,
+				6316E99328B208AF00354904 /* HomeModel.swift */,
 				6316E94828B1FE4100354904 /* ViewController.swift */,
 			);
 			path = Home;
@@ -168,6 +187,29 @@
 				6316E94F28B1FE4300354904 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		6316E98F28B205AC00354904 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		6316E99028B2074B00354904 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6316E99128B2076D00354904 /* HomeLogicTests.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6316E99B28B211D900354904 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6316E99C28B211E600354904 /* Gallery.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,9 +377,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6316E99D28B211E600354904 /* Gallery.swift in Sources */,
+				6316E99428B208AF00354904 /* HomeModel.swift in Sources */,
+				6316E99628B208ED00354904 /* HomeEvent.swift in Sources */,
 				6316E94928B1FE4100354904 /* ViewController.swift in Sources */,
 				6316E94528B1FE4100354904 /* AppDelegate.swift in Sources */,
+				6316E99A28B209F800354904 /* HomeLogic.swift in Sources */,
 				6316E94728B1FE4100354904 /* SceneDelegate.swift in Sources */,
+				6316E99828B2095100354904 /* HomeEffect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6316E99228B2076D00354904 /* HomeLogicTests.swift in Sources */,
 				6316E95C28B1FE4400354904 /* NasaGalleryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
