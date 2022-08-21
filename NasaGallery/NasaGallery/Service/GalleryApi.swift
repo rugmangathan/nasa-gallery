@@ -5,9 +5,11 @@
 //  Created by Rugmangathan on 21/08/22.
 //
 
-enum GalleryError: String, Error {
-  case notFound
+enum GalleryError: Error, Equatable {
+  case fileNotFound
+  case decodingError(String)
+  case others(String)
 }
 protocol GalleryApi {
-  func fetch(completion: (Result<[Gallery], Error>) -> Void)
+  func fetch(completion: (Result<[Gallery], GalleryError>) -> Void)
 }

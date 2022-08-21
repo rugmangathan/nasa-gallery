@@ -40,6 +40,8 @@
 		6316E9B828B2369E00354904 /* GalleryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9B728B2369E00354904 /* GalleryServiceTests.swift */; };
 		6316E9BA28B236EF00354904 /* GalleryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9B928B236EF00354904 /* GalleryApi.swift */; };
 		6316E9BC28B2376C00354904 /* MockGalleryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9BB28B2376C00354904 /* MockGalleryService.swift */; };
+		6316E9BE28B24DBC00354904 /* GalleryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9BD28B24DBC00354904 /* GalleryService.swift */; };
+		6316E9C028B2510400354904 /* Gallery+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9BF28B2510400354904 /* Gallery+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		6316E9B728B2369E00354904 /* GalleryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryServiceTests.swift; sourceTree = "<group>"; };
 		6316E9B928B236EF00354904 /* GalleryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryApi.swift; sourceTree = "<group>"; };
 		6316E9BB28B2376C00354904 /* MockGalleryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGalleryService.swift; sourceTree = "<group>"; };
+		6316E9BD28B24DBC00354904 /* GalleryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryService.swift; sourceTree = "<group>"; };
+		6316E9BF28B2510400354904 /* Gallery+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gallery+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				6316E9A828B2189100354904 /* GeneratedMocks.swift */,
+				6316E9BF28B2510400354904 /* Gallery+Tests.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				6316E9B928B236EF00354904 /* GalleryApi.swift */,
+				6316E9BD28B24DBC00354904 /* GalleryService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -462,6 +468,7 @@
 				6316E9A328B215A500354904 /* HomeAction.swift in Sources */,
 				6316E99A28B209F800354904 /* HomeLogic.swift in Sources */,
 				6316E9B028B22EFF00354904 /* HomeRenderer.swift in Sources */,
+				6316E9BE28B24DBC00354904 /* GalleryService.swift in Sources */,
 				6316E94728B1FE4100354904 /* SceneDelegate.swift in Sources */,
 				6316E99828B2095100354904 /* HomeEffect.swift in Sources */,
 				6316E9AC28B2239500354904 /* HomeEfffectHandler.swift in Sources */,
@@ -476,6 +483,7 @@
 				6316E99228B2076D00354904 /* HomeLogicTests.swift in Sources */,
 				6316E9AB28B21C1500354904 /* SpyableHomeAction.swift in Sources */,
 				6316E9B228B22FC800354904 /* SpyableHomeView.swift in Sources */,
+				6316E9C028B2510400354904 /* Gallery+Tests.swift in Sources */,
 				6316E95C28B1FE4400354904 /* NasaGalleryTests.swift in Sources */,
 				6316E99F28B2147200354904 /* HomeEffectHandlerTests.swift in Sources */,
 				6316E9B428B2309000354904 /* HomeRendererTests.swift in Sources */,

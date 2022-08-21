@@ -11,12 +11,12 @@ class MockGalleryService: GalleryApi {
   var galleries: [Gallery]?
   var fetchSuccess: Bool = false
 
-  func fetch(completion: (Result<[Gallery], Error>) -> Void) {
+  func fetch(completion: (Result<[Gallery], GalleryError>) -> Void) {
     if let galleries = galleries {
       fetchSuccess = true
       return completion(.success(galleries))
     } else {
-      return completion(.failure(GalleryError.notFound))
+      return completion(.failure(GalleryError.fileNotFound))
     }
   }
 }

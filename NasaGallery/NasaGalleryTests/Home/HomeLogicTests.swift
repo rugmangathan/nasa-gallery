@@ -51,7 +51,7 @@ class HomeLogicTests: XCTestCase {
   }
 
   func test_should_show_gallery_when_fetch_galleries_is_successful() {
-    let galleries = [Gallery()]
+    let galleries = [Gallery.mock]
 
     logic
       .given(model)

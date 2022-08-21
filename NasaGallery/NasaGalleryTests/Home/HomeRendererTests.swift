@@ -44,7 +44,7 @@ class HomeRendererTests: XCTestCase {
 
   func test_should_show_fetched_galleries_when_fetch_successful() {
     let renderer = HomeRenderer(view: spy)
-    let model = HomeModel.init(fetchEvent: .fetchSuccessful, [Gallery()])
+    let model = HomeModel.init(fetchEvent: .fetchSuccessful, [Gallery.mock])
 
     renderer.render(model)
 

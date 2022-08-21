@@ -12,7 +12,7 @@ class GalleryServiceTests: XCTestCase {
   func test_should_return_galleries() {
     let service = MockGalleryService()
     service.galleries = [
-      Gallery()
+      Gallery.mock
     ]
 
     service.fetch { result in }
@@ -22,8 +22,8 @@ class GalleryServiceTests: XCTestCase {
   func test_should_return_error() {
     let service = MockGalleryService()
     service.fetch { result in
-      if case .failure(let error as GalleryError) = result {
-        XCTAssertEqual(GalleryError.notFound, error)
+      if case .failure(let error) = result {
+        XCTAssertEqual(GalleryError.fileNotFound, error)
       }
     }
   }
