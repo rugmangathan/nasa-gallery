@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "imagescout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaishin/ImageScout",
+      "state" : {
+        "branch" : "master",
+        "revision" : "bf082663f1f19ca2d56358ef102fccff78ee131a"
+      }
+    },
+    {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",

@@ -6,7 +6,6 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,48 +17,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GNs-wM-gqd">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CmW-3X-kmK">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CmW-3X-kmK">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gAf-Dq-hNJ">
-                                            <size key="itemSize" width="128" height="128"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="9Ai-xJ-8Ve" customClass="GalleryCell" customModule="NasaGallery" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="9eL-jR-Cwv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vcr-xT-I5F">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="Vcr-xT-I5F" secondAttribute="trailing" id="3rb-AV-Rno"/>
-                                                        <constraint firstItem="Vcr-xT-I5F" firstAttribute="leading" secondItem="9eL-jR-Cwv" secondAttribute="leading" id="8qu-ip-tEq"/>
-                                                        <constraint firstItem="Vcr-xT-I5F" firstAttribute="top" secondItem="9eL-jR-Cwv" secondAttribute="top" id="YO5-1S-k4q"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Vcr-xT-I5F" secondAttribute="bottom" id="h5x-o8-3hk"/>
-                                                    </constraints>
-                                                </collectionViewCellContentView>
-                                                <connections>
-                                                    <outlet property="imageView" destination="Vcr-xT-I5F" id="Tkc-xf-akY"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="nkh-Bw-DKV" customClass="DynamicLayout" customModule="NasaGallery" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="9Ai-xJ-8Ve" customClass="GalleryCell" customModule="NasaGallery" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vcr-xT-I5F">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Vcr-xT-I5F" secondAttribute="trailing" id="3rb-AV-Rno"/>
+                                            <constraint firstItem="Vcr-xT-I5F" firstAttribute="leading" secondItem="9Ai-xJ-8Ve" secondAttribute="leading" id="8qu-ip-tEq"/>
+                                            <constraint firstItem="Vcr-xT-I5F" firstAttribute="top" secondItem="9Ai-xJ-8Ve" secondAttribute="top" id="YO5-1S-k4q"/>
+                                            <constraint firstAttribute="bottom" secondItem="Vcr-xT-I5F" secondAttribute="bottom" id="h5x-o8-3hk"/>
+                                        </constraints>
+                                        <size key="customSize" width="150" height="150"/>
                                         <connections>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="uGk-Mr-Nmm"/>
+                                            <outlet property="imageView" destination="Vcr-xT-I5F" id="Tkc-xf-akY"/>
                                         </connections>
-                                    </collectionView>
-                                </subviews>
-                            </stackView>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uGk-Mr-Nmm"/>
+                                </connections>
+                            </collectionView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jjh-9S-jWh">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -69,10 +59,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="GNs-wM-gqd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XEg-nO-NBj"/>
-                            <constraint firstItem="GNs-wM-gqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hfX-o5-86C"/>
-                            <constraint firstItem="GNs-wM-gqd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="i6O-5f-Ugb"/>
-                            <constraint firstItem="GNs-wM-gqd" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="kPh-Kd-T9F"/>
+                            <constraint firstItem="CmW-3X-kmK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ijr-hI-eWW"/>
+                            <constraint firstItem="CmW-3X-kmK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NOU-vi-COk"/>
+                            <constraint firstItem="CmW-3X-kmK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eHJ-TM-D6z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CmW-3X-kmK" secondAttribute="bottom" id="x8n-8o-5ed"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v0X-HM-fGp"/>

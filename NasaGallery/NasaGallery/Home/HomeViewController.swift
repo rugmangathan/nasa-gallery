@@ -5,6 +5,7 @@
 //  Created by Rugmangathan on 21/08/22.
 //
 
+import ImageScout
 import Kingfisher
 import MobiusCore
 import MobiusExtras
@@ -18,6 +19,8 @@ class HomeViewController: UIViewController {
   private lazy var effectHandler: HomeEffectHandler = {
     HomeEffectHandler(self)
   }()
+  private var scout: ImageScout = ImageScout()
+  private var imageSize: [CGSize] = []
 
   private lazy var loop = {
     Mobius
@@ -40,8 +43,12 @@ class HomeViewController: UIViewController {
 
     loop.dispatchEvent(.viewCreated)
 
-    collectionView.collectionViewLayout = generateLayout()
     collectionView.dataSource = self
+    if let layout = collectionView?.collectionViewLayout as? DynamicLayout {
+      layout.delegate = self
+    }
+    collectionView.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
+
     title = "Nasa Gallery"
   }
 
@@ -105,7 +112,24 @@ extension HomeViewController: HomeAction {
       case .failure(let error):
         self?.loop.dispatchEvent(.fetchFailed)
       case .success(let galleries):
-        self?.loop.dispatchEvent(.fetchSuccessful(galleries))
+        self?.fetchImageSize(galleries: galleries)
+      }
+    }
+  }
+
+  func fetchImageSize(galleries: [Gallery]) {
+    galleries.forEach { gallery in
+      guard let url = URL(string: gallery.hdUrl) else {
+        imageSize.append(.zero)
+        return
+      }
+      scout.scoutImage(atURL: url) { [weak self] error, size, type in
+        self?.imageSize.append(size)
+        if self?.imageSize.count == galleries.count {
+          DispatchQueue.main.async {
+            self?.loop.dispatchEvent(.fetchSuccessful(galleries))
+          }
+        }
       }
     }
   }
@@ -117,7 +141,7 @@ extension HomeViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    collectionViewOptions.count
+    imageSize.count
   }
 
   func collectionView(
@@ -151,4 +175,47 @@ extension HomeViewController: UICollectionViewDataSource {
   }
 }
 
-extension HomeViewController: UICollectionViewDelegate {}
+extension HomeViewController: UICollectionViewDataSourcePrefetching {
+  func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+    ImagePrefetcher(urls: indexPaths.compactMap { URL(string: collectionViewOptions[$0.item].hdUrl) }).start()
+  }
+}
+
+extension HomeViewController: DynamicLayoutDelegate {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    heightForPhotoAtIndexPath indexPath: IndexPath
+  ) -> CGFloat {
+    let inset = collectionView.contentInset.left + collectionView.contentInset.right
+    let itemSize = (collectionView.frame.width - (inset + 10)) / 2
+    if imageSize.isEmpty {
+      return 150
+    } else {
+      let sourceImageSize = imageSize[indexPath.item] == .zero
+      ? CGSize(width: 150, height: 150)
+      : imageSize[indexPath.item]
+      return imageSize.isEmpty
+      ? 300
+      : calculateImageHeight(sourceImage: sourceImageSize, scaledToWidth: itemSize)
+    }
+  }
+
+  func calculateImageHeight (sourceImage: CGSize, scaledToWidth: CGFloat) -> CGFloat {
+    let oldWidth = sourceImage.width
+    let scaleFactor = scaledToWidth / oldWidth
+    let newHeight = sourceImage.height * scaleFactor
+    return newHeight
+  }
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
+    let inset = collectionView.contentInset.left + collectionView.contentInset.right
+    let itemSize = (collectionView.frame.width - (inset + 10)) / 2
+    return CGSize(width: itemSize, height: itemSize)
+  }
+}
