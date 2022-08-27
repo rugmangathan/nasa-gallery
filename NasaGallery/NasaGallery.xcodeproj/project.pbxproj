@@ -46,6 +46,7 @@
 		6316E9C828B26C2800354904 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6316E9C728B26C2800354904 /* Kingfisher */; };
 		6316E9CA28B273D000354904 /* DynamicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9C928B273D000354904 /* DynamicLayout.swift */; };
 		6316E9CD28B274E600354904 /* ImageScout in Frameworks */ = {isa = PBXBuildFile; productRef = 6316E9CC28B274E600354904 /* ImageScout */; };
+		6316E9CF28B2962300354904 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9CE28B2962300354904 /* ImageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		6316E9BF28B2510400354904 /* Gallery+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gallery+Tests.swift"; sourceTree = "<group>"; };
 		6316E9C128B2591C00354904 /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		6316E9C928B273D000354904 /* DynamicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLayout.swift; sourceTree = "<group>"; };
+		6316E9CE28B2962300354904 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageService.swift; path = NasaGallery/Common/ImageService.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 		6316E9B528B2367500354904 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				6316E9CE28B2962300354904 /* ImageService.swift */,
 				6316E9B928B236EF00354904 /* GalleryApi.swift */,
 				6316E9BD28B24DBC00354904 /* LocalGalleryService.swift */,
 			);
@@ -485,6 +488,7 @@
 				6316E99A28B209F800354904 /* HomeLogic.swift in Sources */,
 				6316E9B028B22EFF00354904 /* HomeRenderer.swift in Sources */,
 				6316E9BE28B24DBC00354904 /* LocalGalleryService.swift in Sources */,
+				6316E9CF28B2962300354904 /* ImageService.swift in Sources */,
 				6316E94728B1FE4100354904 /* SceneDelegate.swift in Sources */,
 				6316E99828B2095100354904 /* HomeEffect.swift in Sources */,
 				6316E9AC28B2239500354904 /* HomeEfffectHandler.swift in Sources */,

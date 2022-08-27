@@ -44,35 +44,13 @@ class HomeViewController: UIViewController {
     loop.dispatchEvent(.viewCreated)
 
     collectionView.dataSource = self
+    collectionView.prefetchDataSource = self
     if let layout = collectionView?.collectionViewLayout as? DynamicLayout {
       layout.delegate = self
     }
     collectionView.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
 
     title = "Nasa Gallery"
-  }
-
-  private func generateLayout() -> UICollectionViewLayout {
-    let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0),
-      heightDimension: .fractionalHeight(1.0))
-    let fullPhotoItem = NSCollectionLayoutItem(layoutSize: itemSize)
-    fullPhotoItem.contentInsets = NSDirectionalEdgeInsets(
-      top: 2,
-      leading: 2,
-      bottom: 2,
-      trailing: 2
-    )
-    let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0),
-      heightDimension: .fractionalWidth(1/2))
-    let group = NSCollectionLayoutGroup.horizontal(
-      layoutSize: groupSize,
-      subitem: fullPhotoItem,
-      count: 2)
-    let section = NSCollectionLayoutSection(group: group)
-    let layout = UICollectionViewCompositionalLayout(section: section)
-    return layout
   }
 }
 
@@ -119,11 +97,11 @@ extension HomeViewController: HomeAction {
 
   func fetchImageSize(galleries: [Gallery]) {
     galleries.forEach { gallery in
-      guard let url = URL(string: gallery.hdUrl) else {
+      guard let url = URL(string: gallery.url) else {
         imageSize.append(.zero)
         return
       }
-      scout.scoutImage(atURL: url) { [weak self] error, size, type in
+      scout.scoutImage(atURL: url) { [weak self] _, size, _ in
         self?.imageSize.append(size)
         if self?.imageSize.count == galleries.count {
           DispatchQueue.main.async {
@@ -156,21 +134,14 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     let gallery = collectionViewOptions[indexPath.item]
-    let processor = DownsamplingImageProcessor(size: cell.imageView.bounds.size)
-    |> RoundCornerImageProcessor(cornerRadius: 2)
-    cell.imageView.kf.indicatorType = .activity
-    cell.imageView.kf.setImage(
-      with: URL(string: gallery.hdUrl),
-      options: [
-        .processor(processor),
-        .scaleFactor(UIScreen.main.scale),
-        .transition(.fade(1)),
-        .cacheOriginalImage
-      ]) { result in
-        if case .success(let value) = result {
-          ImageCache.default.store(value.image, forKey: gallery.hdUrl)
-        }
+    cell.titleLabel.text = gallery.title
+    ImageService.shared.getImageFromCache(url: gallery.url) { result in
+      if case .success(let value) = result {
+        cell.imageView.image = value
+      } else {
+        cell.imageView.image = UIImage(systemName: "film")?.withTintColor(UIColor.systemBlue)
       }
+    }
     return cell
   }
 }
@@ -192,12 +163,25 @@ extension HomeViewController: DynamicLayoutDelegate {
       return 150
     } else {
       let sourceImageSize = imageSize[indexPath.item] == .zero
-      ? CGSize(width: 150, height: 150)
-      : imageSize[indexPath.item]
+        ? CGSize(width: 150, height: 150)
+        : imageSize[indexPath.item]
+      let imageHeight = calculateImageHeight(sourceImage: sourceImageSize, scaledToWidth: itemSize)
+      let textHeight = requiredHeight(text: collectionViewOptions[indexPath.item].title, cellWidth: itemSize)
       return imageSize.isEmpty
-      ? 300
-      : calculateImageHeight(sourceImage: sourceImageSize, scaledToWidth: itemSize)
+        ? 300
+        : imageHeight + 4 + textHeight + 4
     }
+  }
+
+  func requiredHeight(text:String , cellWidth : CGFloat) -> CGFloat {
+    let font = UIFont.systemFont(ofSize: 17.0)
+    let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: cellWidth, height: .greatestFiniteMagnitude))
+    label.numberOfLines = 0
+    label.lineBreakMode = .byWordWrapping
+    label.font = font
+    label.text = text
+    label.sizeToFit()
+    return label.frame.height
   }
 
   func calculateImageHeight (sourceImage: CGSize, scaledToWidth: CGFloat) -> CGFloat {

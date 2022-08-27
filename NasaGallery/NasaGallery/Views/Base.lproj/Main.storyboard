@@ -29,20 +29,30 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vcr-xT-I5F">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vcr-xT-I5F">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="121.5"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97w-yI-luy">
+                                                    <rect key="frame" x="12" y="125.5" width="126" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Vcr-xT-I5F" secondAttribute="trailing" id="3rb-AV-Rno"/>
                                             <constraint firstItem="Vcr-xT-I5F" firstAttribute="leading" secondItem="9Ai-xJ-8Ve" secondAttribute="leading" id="8qu-ip-tEq"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="97w-yI-luy" secondAttribute="trailing" constant="4" id="Tea-yx-0b3"/>
+                                            <constraint firstItem="97w-yI-luy" firstAttribute="leading" secondItem="9Ai-xJ-8Ve" secondAttribute="leadingMargin" constant="4" id="Wxr-In-zhQ"/>
                                             <constraint firstItem="Vcr-xT-I5F" firstAttribute="top" secondItem="9Ai-xJ-8Ve" secondAttribute="top" id="YO5-1S-k4q"/>
-                                            <constraint firstAttribute="bottom" secondItem="Vcr-xT-I5F" secondAttribute="bottom" id="h5x-o8-3hk"/>
+                                            <constraint firstItem="97w-yI-luy" firstAttribute="bottom" secondItem="9Ai-xJ-8Ve" secondAttribute="bottom" constant="-4" id="h5x-o8-3hk"/>
+                                            <constraint firstItem="97w-yI-luy" firstAttribute="top" secondItem="Vcr-xT-I5F" secondAttribute="bottom" constant="4" id="ywr-wd-5CL"/>
                                         </constraints>
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
                                             <outlet property="imageView" destination="Vcr-xT-I5F" id="Tkc-xf-akY"/>
+                                            <outlet property="titleLabel" destination="97w-yI-luy" id="sTT-cq-mvK"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
