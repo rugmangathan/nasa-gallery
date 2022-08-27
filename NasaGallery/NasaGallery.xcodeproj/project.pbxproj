@@ -47,6 +47,7 @@
 		6316E9CA28B273D000354904 /* DynamicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9C928B273D000354904 /* DynamicLayout.swift */; };
 		6316E9CD28B274E600354904 /* ImageScout in Frameworks */ = {isa = PBXBuildFile; productRef = 6316E9CC28B274E600354904 /* ImageScout */; };
 		6316E9CF28B2962300354904 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6316E9CE28B2962300354904 /* ImageService.swift */; };
+		632A372E28BA2A25004C2C79 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632A372D28BA2A25004C2C79 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		6316E9C128B2591C00354904 /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		6316E9C928B273D000354904 /* DynamicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLayout.swift; sourceTree = "<group>"; };
 		6316E9CE28B2962300354904 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageService.swift; path = NasaGallery/Common/ImageService.swift; sourceTree = SOURCE_ROOT; };
+		632A372D28BA2A25004C2C79 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			children = (
 				6316E97428B1FE4E00354904 /* App Start */,
 				6316E99B28B211D900354904 /* Common */,
+				632A372C28B9FE49004C2C79 /* Detail */,
 				6316E97628B1FE9600354904 /* Home */,
 				6316E97528B1FE7600354904 /* Resources */,
 				6316E9B528B2367500354904 /* Service */,
@@ -283,6 +286,14 @@
 				6316E9BB28B2376C00354904 /* MockGalleryService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		632A372C28B9FE49004C2C79 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				632A372D28BA2A25004C2C79 /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,6 +493,7 @@
 				6316E99628B208ED00354904 /* HomeEvent.swift in Sources */,
 				6316E94928B1FE4100354904 /* HomeViewController.swift in Sources */,
 				6316E94528B1FE4100354904 /* AppDelegate.swift in Sources */,
+				632A372E28BA2A25004C2C79 /* DetailViewController.swift in Sources */,
 				6316E9C228B2591C00354904 /* GalleryCell.swift in Sources */,
 				6316E9AE28B22EB800354904 /* HomeView.swift in Sources */,
 				6316E9A328B215A500354904 /* HomeAction.swift in Sources */,

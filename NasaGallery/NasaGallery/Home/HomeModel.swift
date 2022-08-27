@@ -9,7 +9,10 @@ class HomeModel {
   let fetchEvent: FetchEvent
   let galleries: [Gallery]?
 
-  init(fetchEvent: FetchEvent, _ galleries: [Gallery] = []) {
+  init(
+    fetchEvent: FetchEvent,
+    _ galleries: [Gallery] = []
+  ) {
     self.fetchEvent = fetchEvent
     self.galleries = galleries
   }

@@ -160,6 +160,16 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     return cell
   }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let detailView = storyboard?
+      .instantiateViewController(withIdentifier: "DetailViewController")
+      as? DetailViewController
+    guard let detailView = detailView else { return }
+    detailView.galleries = collectionViewOptions
+    detailView.selectedIndex = indexPath.item
+    navigationController?.show(detailView, sender: self)
+  }
 }
 
 extension HomeViewController: UICollectionViewDataSourcePrefetching {
@@ -189,7 +199,7 @@ extension HomeViewController: DynamicLayoutDelegate {
     }
   }
 
-  func requiredHeight(text:String , cellWidth : CGFloat) -> CGFloat {
+  private func requiredHeight(text:String , cellWidth : CGFloat) -> CGFloat {
     let font = UIFont.systemFont(ofSize: 17.0)
     let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: cellWidth, height: .greatestFiniteMagnitude))
     label.numberOfLines = 0
@@ -200,7 +210,7 @@ extension HomeViewController: DynamicLayoutDelegate {
     return label.frame.height
   }
 
-  func calculateImageHeight (sourceImage: CGSize, scaledToWidth: CGFloat) -> CGFloat {
+  private func calculateImageHeight (sourceImage: CGSize, scaledToWidth: CGFloat) -> CGFloat {
     let oldWidth = sourceImage.width
     let scaleFactor = scaledToWidth / oldWidth
     let newHeight = sourceImage.height * scaleFactor
