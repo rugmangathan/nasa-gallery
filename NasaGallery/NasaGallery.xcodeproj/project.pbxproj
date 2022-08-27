@@ -50,6 +50,7 @@
 		632A372E28BA2A25004C2C79 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632A372D28BA2A25004C2C79 /* DetailViewController.swift */; };
 		632A373028BA498B004C2C79 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 632A372F28BA498B004C2C79 /* DetailView.xib */; };
 		632A373228BA49F1004C2C79 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632A373128BA49F1004C2C79 /* DetailView.swift */; };
+		633E23E828BA78250063AFA4 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E23E728BA78250063AFA4 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		632A372D28BA2A25004C2C79 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		632A372F28BA498B004C2C79 /* DetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		632A373128BA49F1004C2C79 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		633E23E728BA78250063AFA4 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +300,7 @@
 			children = (
 				632A372D28BA2A25004C2C79 /* DetailViewController.swift */,
 				632A373128BA49F1004C2C79 /* DetailView.swift */,
+				633E23E728BA78250063AFA4 /* InfoViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				6316E99A28B209F800354904 /* HomeLogic.swift in Sources */,
 				6316E9B028B22EFF00354904 /* HomeRenderer.swift in Sources */,
 				6316E9BE28B24DBC00354904 /* LocalGalleryService.swift in Sources */,
+				633E23E828BA78250063AFA4 /* InfoViewController.swift in Sources */,
 				6316E9CF28B2962300354904 /* ImageService.swift in Sources */,
 				6316E94728B1FE4100354904 /* SceneDelegate.swift in Sources */,
 				632A373228BA49F1004C2C79 /* DetailView.swift in Sources */,

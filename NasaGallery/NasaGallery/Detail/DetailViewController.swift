@@ -26,9 +26,36 @@ class DetailViewController: UIViewController {
   }
 
   @IBAction func infoButtonTapped(_ sender: UIButton) {
+    guard let infoView = storyboard?
+      .instantiateViewController(withIdentifier: "InfoViewController")
+            as? InfoViewController else {
+      return
+    }
+    infoView.gallery = galleries[selectedIndex]
+    navigationController?.showDetailViewController(infoView, sender: self)
   }
 
-  func setupViews() {
+  @IBAction func unwindFromDetail(segue: UIStoryboardSegue) {
+
+  }
+
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    scrollView.subviews.forEach { $0.removeFromSuperview() }
+    setupViews()
+  }
+}
+
+extension DetailViewController: UIScrollViewDelegate {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let page = Int(round(scrollView.contentOffset.x / view.frame.width))
+    pageControl.currentPage = page
+    selectedIndex = page
+  }
+}
+
+// MARK: private methods
+extension DetailViewController {
+  private func setupViews() {
     detailViews = createDetailViews()
 
     setupScrollView(detailViews: detailViews)
@@ -36,7 +63,7 @@ class DetailViewController: UIViewController {
     pageControl.currentPage = selectedIndex
   }
 
-  func setupScrollView(detailViews : [DetailView]) {
+  private func setupScrollView(detailViews : [DetailView]) {
     scrollView.contentSize = CGSize(
       width: view.bounds.width * CGFloat(detailViews.count),
       height: scrollView.bounds.height
@@ -72,22 +99,9 @@ class DetailViewController: UIViewController {
   }
 
   private func calculateImageHeight(sourceImage: CGSize) -> CGFloat {
-      let oldWidth = sourceImage.width
-      let scaleFactor = view.bounds.width / oldWidth
-      let newHeight = sourceImage.height * scaleFactor
-      return newHeight
-  }
-
-  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-    scrollView.subviews.forEach { $0.removeFromSuperview() }
-    setupViews()
-  }
-}
-
-extension DetailViewController: UIScrollViewDelegate {
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    let page = Int(round(scrollView.contentOffset.x / view.frame.width))
-    pageControl.currentPage = page
-    selectedIndex = page
+    let oldWidth = sourceImage.width
+    let scaleFactor = view.bounds.width / oldWidth
+    let newHeight = sourceImage.height * scaleFactor
+    return newHeight
   }
 }
