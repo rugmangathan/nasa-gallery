@@ -8,7 +8,10 @@
 import UIKit
 
 protocol DynamicLayoutDelegate: AnyObject {
-  func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat
+  func collectionView(
+    _ collectionView: UICollectionView,
+    heightForPhotoAtIndexPath indexPath: IndexPath
+  ) -> CGFloat
 }
 
 class DynamicLayout: UICollectionViewLayout {

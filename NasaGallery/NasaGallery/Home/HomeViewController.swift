@@ -20,6 +20,9 @@ class HomeViewController: UIViewController {
     HomeEffectHandler(self)
   }()
   private var scout: ImageScout = ImageScout()
+  private lazy var imageService: ImageServiceApi = {
+    ImageService.shared
+  }()
   private var imageSize: [CGSize] = []
 
   private lazy var loop = {
@@ -97,15 +100,28 @@ extension HomeViewController: HomeAction {
 
   func fetchImageSize(galleries: [Gallery]) {
     galleries.forEach { gallery in
-      guard let url = URL(string: gallery.url) else {
-        imageSize.append(.zero)
-        return
-      }
-      scout.scoutImage(atURL: url) { [weak self] _, size, _ in
-        self?.imageSize.append(size)
-        if self?.imageSize.count == galleries.count {
-          DispatchQueue.main.async {
-            self?.loop.dispatchEvent(.fetchSuccessful(galleries))
+      if self.imageService.isCached(for: gallery.url) {
+        self.imageService.getImageFromCache(with: gallery.url) { [weak self] result in
+          if case .success(let image) = result {
+            self?.imageSize.append(image.size)
+          }
+          if self?.imageSize.count == galleries.count {
+            DispatchQueue.main.async {
+              self?.loop.dispatchEvent(.fetchSuccessful(galleries))
+            }
+          }
+        }
+      } else {
+        guard let url = URL(string: gallery.url) else {
+          imageSize.append(.zero)
+          return
+        }
+        scout.scoutImage(atURL: url) { [weak self] _, size, _ in
+          self?.imageSize.append(size)
+          if self?.imageSize.count == galleries.count {
+            DispatchQueue.main.async {
+              self?.loop.dispatchEvent(.fetchSuccessful(galleries))
+            }
           }
         }
       }
@@ -135,7 +151,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
     let gallery = collectionViewOptions[indexPath.item]
     cell.titleLabel.text = gallery.title
-    ImageService.shared.getImageFromCache(url: gallery.url) { result in
+    imageService.getImage(for: gallery.url) { result in
       if case .success(let value) = result {
         cell.imageView.image = value
       } else {
@@ -157,11 +173,11 @@ extension HomeViewController: DynamicLayoutDelegate {
     _ collectionView: UICollectionView,
     heightForPhotoAtIndexPath indexPath: IndexPath
   ) -> CGFloat {
-    let inset = collectionView.contentInset.left + collectionView.contentInset.right
-    let itemSize = (collectionView.frame.width - (inset + 10)) / 2
     if imageSize.isEmpty {
       return 150
     } else {
+      let inset = collectionView.contentInset.left + collectionView.contentInset.right
+      let itemSize = (collectionView.frame.width - (inset + 10)) / 2
       let sourceImageSize = imageSize[indexPath.item] == .zero
         ? CGSize(width: 150, height: 150)
         : imageSize[indexPath.item]

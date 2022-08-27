@@ -8,6 +8,17 @@
 import UIKit
 import Kingfisher
 
+enum ImageServiceError: Error {
+  case cacheError
+  case others(String)
+}
+
+protocol ImageServiceApi {
+  func getImage(for url: String, completion: @escaping (Result<UIImage, ImageServiceError>) -> Void)
+  func getImageFromCache(with key: String, completion: @escaping (Result<UIImage, ImageServiceError>) -> Void)
+  func isCached(for key: String) -> Bool
+}
+
 class ImageService {
   static let shared = ImageService()
   private lazy var cache: ImageCache = {
@@ -18,32 +29,43 @@ class ImageService {
     cache.memoryStorage.config.totalCostLimit = 300 * 1024 * 1024 // 300MB
     return cache
   }()
+}
 
-  func getImageFromCache(url: String, completion: @escaping (Result<UIImage, KingfisherError>) -> Void) {
-    let imageCache = cache.imageCachedType(forKey: url)
-    if imageCache.cached {
-      cache.retrieveImage(forKey: url) { result in
-        switch result {
-        case .success(let cacheResult):
-          if let image = cacheResult.image {
-            completion(.success(image))
-          } else {
-            completion(.failure(KingfisherError.cacheError(reason: .imageNotExisting(key: url))))
-          }
-        case .failure(let kfError):
-          completion(.failure(kfError))
-        }
-      }
+extension ImageService: ImageServiceApi {
+  func isCached(for key: String) -> Bool {
+    cache.isCached(forKey: key)
+  }
+
+  func getImage(for url: String, completion: @escaping (Result<UIImage, ImageServiceError>) -> Void) {
+    if isCached(for: url) {
+      getImageFromCache(with: url, completion: completion)
     } else {
       KingfisherManager.shared.retrieveImage(with: URL(string: url)!) { result in
         switch result {
         case .success(let cacheResult):
           completion(.success(cacheResult.image))
         case .failure(let kfError):
-          completion(.failure(kfError))
+          completion(.failure(.others(kfError.localizedDescription)))
         }
       }
     }
+  }
 
+  func getImageFromCache(
+    with key: String,
+    completion: @escaping (Result<UIImage, ImageServiceError>) -> Void
+  ) {
+    cache.retrieveImage(forKey: key) { result in
+      switch result {
+      case .success(let cacheResult):
+        if let image = cacheResult.image {
+          completion(.success(image))
+        } else {
+          completion(.failure(ImageServiceError.cacheError))
+        }
+      case .failure(let kfError):
+        completion(.failure(.others(kfError.localizedDescription)))
+      }
+    }
   }
 }
