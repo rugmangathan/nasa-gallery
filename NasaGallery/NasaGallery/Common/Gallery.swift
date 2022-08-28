@@ -9,7 +9,7 @@ import Foundation
 
 struct Gallery: Decodable {
   let copyright: String?
-  let date: String
+  let date: Date
   let explanation: String
   let hdUrl: String
   let mediaType: String
@@ -19,7 +19,7 @@ struct Gallery: Decodable {
 
   init(
     copyright: String?,
-    date: String,
+    date: Date,
     explanation: String,
     hdUrl: String,
     mediaType: String,
@@ -52,7 +52,7 @@ struct Gallery: Decodable {
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     copyright = try? container.decode(String?.self, forKey: .copyright)
-    date = try container.decode(String.self, forKey: .date)
+    date = try container.decode(Date.self, forKey: .date)
     explanation = try container.decode(String.self, forKey: .explanation)
     hdUrl = try container.decode(String.self, forKey: .hdUrl)
     mediaType = try container.decode(String.self, forKey: .mediaType)

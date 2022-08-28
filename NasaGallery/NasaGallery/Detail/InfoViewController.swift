@@ -18,7 +18,11 @@ class InfoViewController: UIViewController {
 
     descriptionLabel.text = gallery?.explanation
     copyrightLabel.text = gallery?.copyright
-    dateLabel.text = gallery?.date
+    if let date = gallery?.date {
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "dd MMM yyyy"
+      dateLabel.text = dateFormatter.string(from: date)
+    }
   }
 
   @IBAction func cancelButtonTap(_ sender: UIBarButtonItem) {

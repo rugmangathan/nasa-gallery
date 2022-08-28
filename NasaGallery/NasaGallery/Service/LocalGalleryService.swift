@@ -26,6 +26,7 @@ extension LocalGalleryService: GalleryApi {
       let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
       let jsonDecoder = JSONDecoder()
       jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+      jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMdd)
       let galleries = try jsonDecoder.decode([Gallery].self, from: data)
       completion(.success(galleries))
     } catch let error as DecodingError {
@@ -34,4 +35,14 @@ extension LocalGalleryService: GalleryApi {
       completion(.failure(GalleryError.others(error.localizedDescription)))
     }
   }
+}
+
+extension DateFormatter {
+  static let yyyyMMdd: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.calendar = Calendar(identifier: .iso8601)
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    return formatter
+  }()
 }

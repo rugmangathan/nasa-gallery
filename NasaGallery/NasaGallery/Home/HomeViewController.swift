@@ -99,33 +99,36 @@ extension HomeViewController: HomeAction {
   }
 
   func fetchImageSize(galleries: [Gallery]) {
-    galleries.forEach { gallery in
-      if self.imageService.isCached(for: gallery.url) {
-        self.imageService.getImageFromCache(with: gallery.url) { [weak self] result in
-          if case .success(let image) = result {
-            self?.imageSize.append(image.size)
-          }
-          if self?.imageSize.count == galleries.count {
-            DispatchQueue.main.async {
-              self?.loop.dispatchEvent(.fetchSuccessful(galleries))
+    let sortedGalleries = galleries
+      .sorted(by: { $0.date.compare($1.date) == .orderedDescending })
+    sortedGalleries
+      .forEach { gallery in
+        if self.imageService.isCached(for: gallery.url) {
+          self.imageService.getImageFromCache(with: gallery.url) { [weak self] result in
+            if case .success(let image) = result {
+              self?.imageSize.append(image.size)
+            }
+            if self?.imageSize.count == galleries.count {
+              DispatchQueue.main.async {
+                self?.loop.dispatchEvent(.fetchSuccessful(sortedGalleries))
+              }
             }
           }
-        }
-      } else {
-        guard let url = URL(string: gallery.url) else {
-          imageSize.append(.zero)
-          return
-        }
-        scout.scoutImage(atURL: url) { [weak self] _, size, _ in
-          self?.imageSize.append(size)
-          if self?.imageSize.count == galleries.count {
-            DispatchQueue.main.async {
-              self?.loop.dispatchEvent(.fetchSuccessful(galleries))
+        } else {
+          guard let url = URL(string: gallery.url) else {
+            imageSize.append(.zero)
+            return
+          }
+          scout.scoutImage(atURL: url) { [weak self] _, size, _ in
+            self?.imageSize.append(size)
+            if self?.imageSize.count == galleries.count {
+              DispatchQueue.main.async {
+                self?.loop.dispatchEvent(.fetchSuccessful(sortedGalleries))
+              }
             }
           }
         }
       }
-    }
   }
 }
 
@@ -155,6 +158,7 @@ extension HomeViewController: UICollectionViewDataSource {
       if case .success(let value) = result {
         cell.imageView.image = value
       } else {
+        cell.imageView.contentMode = .scaleAspectFit
         cell.imageView.image = UIImage(systemName: "film")?.withTintColor(UIColor.systemBlue)
       }
     }
