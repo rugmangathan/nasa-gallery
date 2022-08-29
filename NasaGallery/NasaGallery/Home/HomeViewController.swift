@@ -152,16 +152,7 @@ extension HomeViewController: UICollectionViewDataSource {
       return UICollectionViewCell()
     }
 
-    let gallery = collectionViewOptions[indexPath.item]
-    cell.titleLabel.text = gallery.title
-    imageService.getImage(for: gallery.url) { result in
-      if case .success(let value) = result {
-        cell.imageView.image = value
-      } else {
-        cell.imageView.contentMode = .scaleAspectFit
-        cell.imageView.image = UIImage(systemName: "film")?.withTintColor(UIColor.systemBlue)
-      }
-    }
+    cell.gallery = collectionViewOptions[indexPath.item]
     return cell
   }
 

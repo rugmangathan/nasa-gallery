@@ -17,6 +17,7 @@ protocol ImageServiceApi {
   func getImage(for url: String, completion: @escaping (Result<UIImage, ImageServiceError>) -> Void)
   func getImageFromCache(with key: String, completion: @escaping (Result<UIImage, ImageServiceError>) -> Void)
   func isCached(for key: String) -> Bool
+  func cancelDownloadTask(for url: String)
 }
 
 class ImageService {
@@ -29,6 +30,7 @@ class ImageService {
     cache.memoryStorage.config.totalCostLimit = 300 * 1024 * 1024 // 300MB
     return cache
   }()
+  private let downloadManager = KingfisherManager.shared
 }
 
 extension ImageService: ImageServiceApi {
@@ -40,7 +42,7 @@ extension ImageService: ImageServiceApi {
     if isCached(for: url) {
       getImageFromCache(with: url, completion: completion)
     } else {
-      KingfisherManager.shared.retrieveImage(with: URL(string: url)!) { result in
+      downloadManager.retrieveImage(with: URL(string: url)!) { result in
         switch result {
         case .success(let cacheResult):
           completion(.success(cacheResult.image))
@@ -67,5 +69,9 @@ extension ImageService: ImageServiceApi {
         completion(.failure(.others(kfError.localizedDescription)))
       }
     }
+  }
+
+  func cancelDownloadTask(for key: String) {
+    downloadManager.downloader.cancel(url: URL(string: key)!)
   }
 }
