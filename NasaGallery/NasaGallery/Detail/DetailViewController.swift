@@ -35,10 +35,6 @@ class DetailViewController: UIViewController {
     navigationController?.showDetailViewController(infoView, sender: self)
   }
 
-  @IBAction func unwindFromDetail(segue: UIStoryboardSegue) {
-
-  }
-
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     scrollView.subviews.forEach { $0.removeFromSuperview() }
     setupViews()
@@ -65,7 +61,7 @@ extension DetailViewController {
 
   private func setupScrollView(detailViews : [DetailView]) {
     scrollView.contentSize = CGSize(
-      width: view.bounds.width * CGFloat(detailViews.count),
+      width: scrollView.bounds.width * CGFloat(detailViews.count),
       height: scrollView.bounds.height
     )
     scrollView.isPagingEnabled = true

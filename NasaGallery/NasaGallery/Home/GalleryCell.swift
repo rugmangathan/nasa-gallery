@@ -11,6 +11,8 @@ import Kingfisher
 class GalleryCell: UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var retryButton: UIButton!
+  @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
   private lazy var imageService: ImageServiceApi = {
     ImageService.shared
   }()
@@ -34,23 +36,37 @@ class GalleryCell: UICollectionViewCell {
     imageService.cancelDownloadTask(for: gallery.url)
     imageView.image = nil
     titleLabel.text = ""
+    progressIndicator.stopAnimating()
+    retryButton.isHidden = true
   }
 
-  private func setupCell() {
-    guard let gallery = gallery else {
-      return
-    }
+  @IBAction func retryButtonTapped(_ sender: UIButton) {
+    setupImage()
+    retryButton.isHidden = true
+  }
 
-    titleLabel.text = gallery.title
-    let completion: (Result<UIImage, ImageServiceError>) -> Void = { result in
+  private func setupImage() {
+    guard let gallery = gallery else { return }
+    progressIndicator.startAnimating()
+    let completion: (Result<UIImage, ImageServiceError>) -> Void = { [weak self] result in
+      self?.progressIndicator.stopAnimating()
       if case .success(let image) = result {
-        self.imageView.image = image
+        self?.imageView.image = image
+        self?.retryButton.isHidden = true
+      } else {
+        self?.imageView.image = UIImage(systemName: "photo")
+        self?.retryButton.isHidden = false
       }
     }
-    if ImageService.shared.isCached(for: gallery.url) {
+    if imageService.isCached(for: gallery.url) {
       imageService.getImageFromCache(with: gallery.url, completion: completion)
     } else {
       imageService.getImage(for: gallery.url, completion: completion)
     }
+  }
+
+  private func setupCell() {
+    titleLabel.text = gallery?.title
+    setupImage()
   }
 }
