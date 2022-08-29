@@ -51,10 +51,14 @@ class GalleryCell: UICollectionViewCell {
     let completion: (Result<UIImage, ImageServiceError>) -> Void = { [weak self] result in
       self?.progressIndicator.stopAnimating()
       if case .success(let image) = result {
-        self?.imageView.image = image
         self?.retryButton.isHidden = true
+        self?.imageView.image = image
+        self?.imageView.contentMode = .scaleAspectFill
       } else {
-        self?.imageView.image = UIImage(systemName: "photo")
+        let image = UIImage(systemName: "photo")
+        self?.imageView.image = image
+        self?.imageView.tintColor = .lightGray
+        self?.imageView.contentMode = .scaleAspectFit
         self?.retryButton.isHidden = false
       }
     }

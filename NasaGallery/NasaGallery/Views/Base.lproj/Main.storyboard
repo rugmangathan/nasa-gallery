@@ -45,14 +45,14 @@
                                                         <constraint firstAttribute="width" secondItem="n5D-3z-afc" secondAttribute="height" multiplier="1:1" id="u7L-y3-ejO"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.icloud" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.icloud.fill" catalog="system"/>
                                                     <connections>
                                                         <action selector="retryButtonTapped:" destination="9Ai-xJ-8Ve" eventType="touchUpInside" id="iOA-pU-2QO"/>
                                                     </connections>
                                                 </button>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Uc9-WQ-OZH">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Uc9-WQ-OZH">
                                                     <rect key="frame" x="65" y="65" width="20" height="20"/>
-                                                    <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="color" systemColor="systemOrangeColor"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                         </view>
@@ -302,7 +302,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise.icloud" catalog="system" width="128" height="88"/>
+        <image name="arrow.clockwise.icloud.fill" catalog="system" width="128" height="88"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">
@@ -310,6 +310,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
