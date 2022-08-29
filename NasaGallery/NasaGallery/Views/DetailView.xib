@@ -28,6 +28,7 @@
                 <constraint firstItem="yxS-Ni-Pa7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MDS-4L-CFp"/>
                 <constraint firstItem="yxS-Ni-Pa7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="PnQ-qg-3pO"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="imageView" destination="yxS-Ni-Pa7" id="cqM-Yb-vRm"/>
                 <outlet property="imageViewHeightConstraint" destination="EBX-bq-uPb" id="pP2-BY-brL"/>

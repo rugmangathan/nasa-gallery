@@ -89,19 +89,19 @@
         <scene sceneID="viv-e5-Wd3">
             <objects>
                 <viewController storyboardIdentifier="DetailViewController" id="azo-fk-f6j" customClass="DetailViewController" customModule="NasaGallery" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Oed-eK-Pbz">
+                    <view key="view" contentMode="scaleToFill" id="Oed-eK-Pbz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNk-xo-jIx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNk-xo-jIx">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="dFi-2S-ffu"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="7Uh-aU-zDd"/>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="NpZ-8y-Gor">
-                                <rect key="frame" x="149.5" y="788" width="115.5" height="26"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="NpZ-8y-Gor">
+                                <rect key="frame" x="149.5" y="820" width="115.5" height="26"/>
                             </pageControl>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Of4-6W-5j8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Of4-6W-5j8">
                                 <rect key="frame" x="20" y="786" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Of4-6W-5j8" secondAttribute="height" multiplier="1:1" id="bvn-EZ-ct5"/>
@@ -117,7 +117,6 @@
                         <viewLayoutGuide key="safeArea" id="e5f-7L-Eev"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JNk-xo-jIx" firstAttribute="height" secondItem="Oed-eK-Pbz" secondAttribute="height" multiplier="0.912946" id="2Gu-6c-S68"/>
                             <constraint firstItem="NpZ-8y-Gor" firstAttribute="centerX" secondItem="Oed-eK-Pbz" secondAttribute="centerX" id="6pc-6M-Xii"/>
                             <constraint firstItem="JNk-xo-jIx" firstAttribute="leading" secondItem="e5f-7L-Eev" secondAttribute="leading" id="9O5-Th-56X"/>
                             <constraint firstItem="e5f-7L-Eev" firstAttribute="bottom" secondItem="JNk-xo-jIx" secondAttribute="bottom" id="CHy-ky-rfD"/>
@@ -195,7 +194,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfy-oD-RuQ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfy-oD-RuQ">
                                                         <rect key="frame" x="0.0" y="24.5" width="398" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
