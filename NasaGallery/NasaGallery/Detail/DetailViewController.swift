@@ -61,8 +61,8 @@ extension DetailViewController {
 
   private func setupScrollView(detailViews : [DetailView]) {
     scrollView.contentSize = CGSize(
-      width: scrollView.bounds.width * CGFloat(detailViews.count),
-      height: scrollView.bounds.height
+      width: view.bounds.width * CGFloat(detailViews.count),
+      height: view.bounds.height
     )
     scrollView.isPagingEnabled = true
     scrollView.contentOffset = CGPoint(x: view.frame.width * CGFloat(selectedIndex), y: 0)
@@ -72,7 +72,7 @@ extension DetailViewController {
         x: view.bounds.width * CGFloat(index),
         y: 0,
         width: view.bounds.width,
-        height: scrollView.bounds.height
+        height: view.bounds.height
       )
       scrollView.addSubview(detailViews[index])
     }

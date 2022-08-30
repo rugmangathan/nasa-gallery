@@ -10,6 +10,7 @@ import Kingfisher
 import MobiusCore
 import MobiusExtras
 import UIKit
+import CHTCollectionViewWaterfallLayout
 
 class HomeViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
@@ -47,10 +48,12 @@ class HomeViewController: UIViewController {
     loop.dispatchEvent(.viewCreated)
 
     collectionView.dataSource = self
+    collectionView.delegate = self
+    let layout = CHTCollectionViewWaterfallLayout()
+    layout.minimumColumnSpacing = 5.0
+    layout.minimumInteritemSpacing = 5.0
+    collectionView.collectionViewLayout = layout
     collectionView.prefetchDataSource = self
-    if let layout = collectionView?.collectionViewLayout as? DynamicLayout {
-      layout.delegate = self
-    }
     collectionView.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
 
     title = "Nasa Gallery"
@@ -173,27 +176,7 @@ extension HomeViewController: UICollectionViewDataSourcePrefetching {
   }
 }
 
-extension HomeViewController: DynamicLayoutDelegate {
-  func collectionView(
-    _ collectionView: UICollectionView,
-    heightForPhotoAtIndexPath indexPath: IndexPath
-  ) -> CGFloat {
-    if imageSize.isEmpty {
-      return 150
-    } else {
-      let inset = collectionView.contentInset.left + collectionView.contentInset.right
-      let itemSize = (collectionView.frame.width - (inset + 10)) / 2
-      let sourceImageSize = imageSize[indexPath.item] == .zero
-        ? CGSize(width: 150, height: 150)
-        : imageSize[indexPath.item]
-      let imageHeight = calculateImageHeight(sourceImage: sourceImageSize, scaledToWidth: itemSize)
-      let textHeight = requiredHeight(text: collectionViewOptions[indexPath.item].title, cellWidth: itemSize)
-      return imageSize.isEmpty
-        ? 300
-        : imageHeight + 4 + textHeight + 4
-    }
-  }
-
+extension HomeViewController {
   private func requiredHeight(text:String , cellWidth : CGFloat) -> CGFloat {
     let font = UIFont.systemFont(ofSize: 17.0)
     let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: cellWidth, height: .greatestFiniteMagnitude))
@@ -213,14 +196,22 @@ extension HomeViewController: DynamicLayoutDelegate {
   }
 }
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout {
+extension HomeViewController: CHTCollectionViewDelegateWaterfallLayout {
   func collectionView(
     _ collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    let inset = collectionView.contentInset.left + collectionView.contentInset.right
-    let itemSize = (collectionView.frame.width - (inset + 10)) / 2
-    return CGSize(width: itemSize, height: itemSize)
+    if imageSize.isEmpty {
+      return CGSize(width: 150, height: 150)
+    } else {
+      let imageSize = imageSize[indexPath.item]
+      let titleSize = requiredHeight(
+        text: collectionViewOptions[indexPath.item].title,
+        cellWidth: imageSize.width
+      )
+      let padding: CGFloat = 8
+      return CGSize(width: imageSize.width, height: imageSize.height + titleSize + padding)
+    }
   }
 }
