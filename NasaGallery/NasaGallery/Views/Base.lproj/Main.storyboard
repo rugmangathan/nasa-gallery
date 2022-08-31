@@ -120,10 +120,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNk-xo-jIx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNk-xo-jIx">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="dFi-2S-ffu"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="7Uh-aU-zDd"/>
+                                <connections>
+                                    <outlet property="delegate" destination="azo-fk-f6j" id="Jze-He-qO0"/>
+                                </connections>
                             </scrollView>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="NpZ-8y-Gor">
                                 <rect key="frame" x="149.5" y="803" width="115.5" height="26"/>
@@ -154,7 +157,6 @@
                             <constraint firstItem="JNk-xo-jIx" firstAttribute="top" secondItem="e5f-7L-Eev" secondAttribute="top" id="XRG-Rs-w5h"/>
                             <constraint firstItem="Of4-6W-5j8" firstAttribute="leading" secondItem="Oed-eK-Pbz" secondAttribute="leadingMargin" id="ncG-sr-uxd"/>
                             <constraint firstItem="JNk-xo-jIx" firstAttribute="trailing" secondItem="e5f-7L-Eev" secondAttribute="trailing" id="or3-6u-r3L"/>
-                            <constraint firstItem="JNk-xo-jIx" firstAttribute="width" secondItem="Oed-eK-Pbz" secondAttribute="width" id="yI5-qV-TQX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="W1r-cU-tDh"/>

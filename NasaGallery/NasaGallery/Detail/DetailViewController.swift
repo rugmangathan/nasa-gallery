@@ -13,7 +13,8 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var pageControl: UIPageControl!
   var galleries: [Gallery] = []
   var selectedIndex: Int = 0
-  private var detailViews: [DetailView] = []
+  private var detailViews: [DetailView?] = []
+  private var transitioning: Bool = false
   private var imageService: ImageServiceApi = {
     ImageService.shared
   }()
@@ -21,8 +22,35 @@ class DetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    scrollView.delegate = self
-    setupViews()
+    detailViews = [DetailView?](repeating: nil, count: galleries.count)
+    pageControl.numberOfPages = galleries.count
+    pageControl.currentPage = selectedIndex
+  }
+
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    _ = setupInitialViews
+  }
+
+  lazy var setupInitialViews: Void = {
+    setupScrollView()
+    gotoPage(page: selectedIndex, animated: false)
+  }()
+
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+
+    removeAnyGalleries()
+
+    coordinator.animate(alongsideTransition: nil) { _ in
+      self.setupScrollView()
+      self.detailViews = [DetailView?](repeating: nil, count: self.galleries.count)
+      self.transitioning = true
+      self.gotoPage(page: self.pageControl.currentPage, animated: false)
+      self.transitioning = false
+    }
+
+    super.viewWillTransition(to: size, with: coordinator)
   }
 
   @IBAction func infoButtonTapped(_ sender: UIButton) {
@@ -35,69 +63,73 @@ class DetailViewController: UIViewController {
     navigationController?.showDetailViewController(infoView, sender: self)
   }
 
-  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-    scrollView.subviews.forEach { $0.removeFromSuperview() }
-    setupViews()
-  }
+  @IBAction func unwindFromDetail(segue: UIStoryboardSegue) {}
 }
 
 extension DetailViewController: UIScrollViewDelegate {
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    let page = Int(round(scrollView.contentOffset.x / view.frame.width))
-    pageControl.currentPage = page
-    selectedIndex = page
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    let pageWidth = self.scrollView.frame.width
+    let page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
+    pageControl.currentPage = Int(page)
+    loadCurrentPages(page: pageControl.currentPage)
   }
 }
 
 // MARK: private methods
 extension DetailViewController {
-  private func setupViews() {
-    detailViews = createDetailViews()
-
-    setupScrollView(detailViews: detailViews)
-    pageControl.numberOfPages = galleries.count
-    pageControl.currentPage = selectedIndex
+  private func setupScrollView() {
+    scrollView.contentSize = CGSize(
+      width: scrollView.frame.width * CGFloat(galleries.count),
+      height: scrollView.frame.height - view.safeAreaInsets.top
+    )
   }
 
-  private func setupScrollView(detailViews : [DetailView]) {
-    scrollView.contentSize = CGSize(
-      width: view.bounds.width * CGFloat(detailViews.count),
-      height: view.bounds.height
-    )
-    scrollView.isPagingEnabled = true
-    scrollView.contentOffset = CGPoint(x: view.frame.width * CGFloat(selectedIndex), y: 0)
-
-    for index in 0 ..< detailViews.count {
-      detailViews[index].frame = CGRect(
-        x: view.bounds.width * CGFloat(index),
-        y: 0,
-        width: view.bounds.width,
-        height: view.bounds.height
-      )
-      scrollView.addSubview(detailViews[index])
+  private func removeAnyGalleries() {
+    for detailView in detailViews where detailView != nil {
+      detailView?.removeFromSuperview()
     }
   }
 
-  private func createDetailViews() -> [DetailView] {
-    galleries.compactMap { gallery in
+  private func loadPage(_ page: Int) {
+    guard page < galleries.count && page != -1 else { return }
+
+    if detailViews[page] == nil {
       guard let detailView = Bundle.main
         .loadNibNamed("DetailView", owner: self)?.first as? DetailView else {
-        return nil
+        return
       }
-      imageService.getImage(for: gallery.url) { result in
+      imageService.getImage(for: galleries[page].url) { result in
         if case .success(let image) = result {
-          detailView.imageViewHeightConstraint.constant = self.calculateImageHeight(sourceImage: image.size)
           detailView.imageView.image = image
         }
       }
-      return detailView
+      var frame = scrollView.frame
+      frame.origin.x = frame.width * CGFloat(page)
+      frame.origin.y = -self.view.safeAreaInsets.top
+      frame.size.height += self.view.safeAreaInsets.top
+      detailView.frame = frame
+      scrollView.addSubview(detailView)
+
+      detailViews[page] = detailView
     }
   }
 
-  private func calculateImageHeight(sourceImage: CGSize) -> CGFloat {
-    let oldWidth = sourceImage.width
-    let scaleFactor = view.bounds.width / oldWidth
-    let newHeight = sourceImage.height * scaleFactor
-    return newHeight
+  private func loadCurrentPages(page: Int) {
+    guard (page > 0 && page + 1 < galleries.count) || transitioning else { return }
+
+    removeAnyGalleries()
+    detailViews = [DetailView?](repeating: nil, count: galleries.count)
+
+    loadPage(Int(page) - 1)
+    loadPage(Int(page))
+    loadPage(Int(page) + 1)
+  }
+
+  private func gotoPage(page: Int, animated: Bool) {
+    loadCurrentPages(page: page)
+    var bounds = scrollView.bounds
+    bounds.origin.x = bounds.width * CGFloat(page)
+    bounds.origin.y = 0
+    scrollView.scrollRectToVisible(bounds, animated: animated)
   }
 }
